@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/components/layouts/header";
 import About from "../pages/about";
-import Expericence from "../pages/Expericence";
+import Experience from "../pages/Experience";
 import Education from "../pages/Education";
 import SkillsSection from "../pages/skills";
 
@@ -14,7 +14,7 @@ const HeroSection = () => {
         <About />
       </div>
       <div id="experience" className=" px-10 my-12 scroll-mt-20">
-        <Expericence />
+        <Experience />
       </div>
 
       <div id="education" className=" px-10 my-12 scroll-mt-20">
