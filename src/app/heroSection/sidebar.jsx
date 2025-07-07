@@ -1,69 +1,75 @@
 import React from "react";
-import { Dock, DockIcon } from "@/components/magicui/dock";
-
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Github,
-  Facebook,
-  Twitter,
-  Instagram,
-} from "lucide-react";
-import ContactItem from "@/components/layouts/ContactItem"; // adjust path if needed
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaGithub,
+} from "react-icons/fa";
+
+import ContactItem from "@/components/layouts/ContactItem";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import { useConfig } from "@/context/ConfigContext"; // ✅ use global config
+
+const iconMap = {
+  email: FaEnvelope,
+  phone: FaPhoneAlt,
+  github: FaGithub,
+  location: FaMapMarkerAlt,
+};
+
 const Sidebar = () => {
+  const { config, loading } = useConfig();
+  const sidebarConfig = config.sidebar;
+
+  if (loading || !sidebarConfig)
+    return <div className="text-white p-4">Loading Sidebar...</div>;
+
   return (
-    <aside className="w-full md:w-72 bg-[#1f1f1f] text-white py-10 px-6  rounded-2xl shadow-lg flex flex-col justify-between lg:sticky lg:top-[40px] h-screen">
+    <aside className="w-full md:w-72 bg-[#1f1f1f]/50 text-white py-10 px-6 rounded-2xl shadow-lg flex flex-col justify-between lg:sticky lg:top-[60px] h-min">
       <BorderBeam
         size={800}
         borderWidth={2.5}
         duration={4}
-        className=" via-blue-500    "
+        className="via-blue-500"
       />
       <div className="flex flex-col items-center space-y-2">
         <img
           className="w-32 h-32 rounded-2xl bg-gray-800/40"
-          src="/assets/my-avatar.png"
+          src={sidebarConfig.avatar}
           alt="Avatar"
         />
-        <h2 className="text-3xl font-bold">Vivek Pandey</h2>
+
+        <h2 className="text-3xl font-bold">{sidebarConfig.name}</h2>
+
         <h3 className="text-sm text-gray-400 bg-black px-3 py-2 rounded-lg">
-          Azure Developer
+          {sidebarConfig.role}
         </h3>
-        <div className="border border-gray-700 w-full mt-4 mb-6"></div>
+
+        <div>
+          <img
+            src={sidebarConfig.badge}
+            className="w-30 h-30 rounded-xl mt-4"
+            alt=""
+          />
+        </div>
+
+        <div className="border border-gray-200 w-full mb-6"></div>
 
         {/* Contact Info */}
         <div className="space-y-6 w-full">
-          <ContactItem Icon={Mail} title="Email" value="vivek@example.com" />
-          <ContactItem Icon={Phone} title="Phone" value="+91 7488496158" />
-          <ContactItem
-            Icon={Github}
-            title="GitHub"
-            value="github.com/vivek-pandey"
-            link="https://github.com/vivek-pandey"
-          />
-          <ContactItem
-            Icon={MapPin}
-            title="Location"
-            value="Bangalore, India"
-          />
+          {sidebarConfig.contacts.map((contact, idx) => {
+            const Icon = iconMap[contact.type];
+            return (
+              <ContactItem
+                key={idx}
+                Icon={Icon}
+                title={contact.title}
+                value={contact.value}
+                link={contact.link}
+              />
+            );
+          })}
         </div>
-      </div>
-
-      {/* Social Icons */}
-      <div className="relative">
-        <Dock iconMagnification={65} iconDistance={80} className="p-8">
-          <DockIcon className=" bg-blue-500  dark:bg-white/10">
-            <Facebook className="size-full " />
-          </DockIcon>
-          <DockIcon className="bg-blue-500 dark:bg-white/10">
-            <Twitter className="size-full" />
-          </DockIcon>
-          <DockIcon className="bg-blue-500 dark:bg-white/10">
-            <Instagram className="size-full" />
-          </DockIcon>
-        </Dock>
       </div>
     </aside>
   );

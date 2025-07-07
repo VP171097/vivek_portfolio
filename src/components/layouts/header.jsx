@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-scroll";
+import { useConfig } from "@/context/ConfigContext"; // Make sure you have this
 
 const Header = () => {
-  const navItems = [
-    { label: "About", to: "about" },
-    { label: "Education", to: "education" },
-    { label: "Experience", to: "experience" },
-    { label: "Skills", to: "skills" },
-    { label: "Contact", to: "contact" },
-  ];
+  const { config, loading } = useConfig();
+
+  if (loading || !config.navigation) {
+    return (
+      <div className="text-white text-center mt-4">Loading Navigation...</div>
+    );
+  }
+
+  const navItems = config.navigation.navItems;
 
   return (
-    <div className=" flex justify-end mb-4 sticky top-0  z-50 ">
-      <div className="  border bg-[#282829] px-5 py-4 rounded-tr border-[#333]  rounded-bl-2xl">
+    <div className="flex justify-end mb-4 sticky top-0 z-50">
+      <div className="bg-[#181819a1] px-5 py-4 rounded-tr-2xl border-[#333] rounded-bl-2xl pr-8">
         {navItems.map((item, index) => (
           <Link
             key={index}
