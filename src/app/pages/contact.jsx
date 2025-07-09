@@ -36,15 +36,15 @@ const ContactSection = () => {
   };
 
   return (
-    <div className="py-8 px-8 bg-black/80 rounded-2xl flex justify-center flex-wrap gap-6">
+    <div className="py-10 xl:px-8 px-2 rounded-2xl container bg-black/50  flex justify-center flex-wrap gap-8 ">
       <MagicCard
         gradientSize={400}
         gradientFrom="#4a16f4"
         gradientTo="#f42116"
-        className="rounded-2xl p-8 md:p-12 w-full max-w-2xl text-white"
+        className="rounded-2xl xl:p-8 p-4 md:p-12  w-full max-w-2xl  text-white "
       >
         {/* Heading */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 ">
           <p className="text-xs tracking-widest text-orange-400 mb-1">
             GET IN TOUCH
           </p>
@@ -119,7 +119,7 @@ const ContactSection = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full flex justify-center items-center gap-2 ${
+            className={`w-full flex justify-center items-center gap-2 cursor-pointer ${
               loading
                 ? "bg-gray-600 cursor-not-allowed"
                 : "bg-amber-500 hover:bg-amber-600"
@@ -159,7 +159,7 @@ const ContactSection = () => {
         </form>
       </MagicCard>
 
-      <div className="w-full max-w-md p-6 md:p-10 rounded-2xl flex items-center justify-center">
+      <div className="w-full max-w-md xl:p-2  md:p-10 rounded-2xl flex items-center justify-center">
         <div className="rounded-xl overflow-hidden shadow-lg shadow-stone-600">
           <img
             src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*z76XqGEphiXy522fNjLlTQ.gif"

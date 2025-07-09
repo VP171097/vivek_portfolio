@@ -43,14 +43,19 @@ const App = () => {
       <ScrollProgress className="top-0 z-20" />
       <LandingPage />
 
-      <section className="flex flex-col md:flex-row justify-between container mx-auto gap-6 relative z-10">
-        <Sidebar />
+      <section className="flex mt-8 flex-col md:flex-row xl:container w-full justify-center xl:gap-24  z-10 ">
+        <div>
+          <Sidebar />
+        </div>
         <div>
           <HeroSection />
         </div>
       </section>
 
-      <section id="contact" className="container mt-8 mb-8">
+      <section
+        id="contact"
+        className=" flex justify-between   flex-col  mt-4  "
+      >
         <ContactSection />
       </section>
 

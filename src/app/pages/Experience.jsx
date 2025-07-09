@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Briefcase } from "lucide-react";
 import { MagicCard } from "@/components/magicui/magic-card";
-import { useConfig } from "@/context/ConfigContext"; // ✅ use dynamic config
+import { useConfig } from "@/context/ConfigContext";
 
 const Experience = () => {
   const { config, loading } = useConfig();
@@ -10,32 +10,42 @@ const Experience = () => {
   if (loading || !experienceConfig)
     return <div className="text-white text-center">Loading Experience...</div>;
 
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const toggleExpand = (index) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
   return (
     <div className="text-white">
       <MagicCard
         gradientSize={400}
         gradientFrom="#4a16f4"
         gradientTo="#f42116"
-        className="rounded-2xl border-2 p-8"
+        className="rounded-2xl xl:border-2 xl:p-8 py-6 px-3"
       >
         {/* Header */}
-        <div className="flex items-center mb-6">
-          <div className="bg-yellow-400 p-2 rounded-md mr-4">
+        <div className="flex items-center mb-4 px-1">
+          <div className="bg-yellow-400 p-2 rounded-md mr-4 ">
             <Briefcase size={20} className="text-black" />
           </div>
           <h2 className="text-2xl font-bold">{experienceConfig.title}</h2>
         </div>
 
         {/* Timeline */}
-        <div className="relative ml-5 border-l-2 border-gray-600 pt-5">
+        <div className="relative ml-5 border-l-2 border-gray-600 pt-0.5">
           {experienceConfig.experienceData.map((item, index) => (
             <div key={index} className="mb-10 pl-8 relative">
               {/* Yellow Dot */}
-              <div className="mt-10">
-                <span className="absolute left-[-9px] top-1 w-4 h-4 bg-yellow-400 border-2 border-black rounded-full"></span>
+              <div className="mt-10 py-3">
+                <span className="absolute left-[-9px] top-1 w-4 h-4 bg-yellow-400 rounded-full"></span>
 
-                {/* Content */}
-                <h3 className="text-lg font-bold">{item.title}</h3>
+                {/* Title */}
+                <h3 className="xl:text-lg text-xl font-bold">{item.title}</h3>
+
                 <div className="flex gap-4 mt-3 items-center">
                   <img
                     src={item.img}
@@ -50,11 +60,29 @@ const Experience = () => {
                   </div>
                 </div>
 
-                <ul className="list-disc list-inside space-y-1 text-sm text-gray-200 mt-2">
-                  {item.points.map((point, i) => (
-                    <li key={i}>{point}</li>
-                  ))}
+                {/* Bullet Points */}
+                <ul className="list-disc list-inside space-y-2 xl:text-sm text-gray-200 mt-2">
+                  <div className="hidden lg:block">
+                    {item.points.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </div>
+
+                  <div className="lg:hidden">
+                    {expandedItems[index] &&
+                      item.points.map((point, i) => <li key={i}>{point}</li>)}
+                  </div>
                 </ul>
+
+                {/* Toggle Button (visible only on mobile) */}
+                <div className="lg:hidden mt-2">
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="text-blue-400 text-sm hover:text-amber-400 cursor-pointer  focus:outline-none"
+                  >
+                    {expandedItems[index] ? "Show Less" : "See More..."}
+                  </button>
+                </div>
               </div>
             </div>
           ))}

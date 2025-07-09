@@ -6,50 +6,65 @@ import { Particles } from "@/components/magicui/particles";
 import { Scrollui } from "@/components/ui/scrollui";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import SocialLinks from "@/components/layouts/socialLink";
-import { useConfig } from "@/context/ConfigContext"; // ✅ use context
+import { useConfig } from "@/context/ConfigContext";
 
 const LandingPage = () => {
   const { config, loading } = useConfig();
   const landingConfig = config.landing;
 
-  if (loading || !landingConfig)
-    return <div className="text-white text-center">Loading Landing...</div>;
+  if (loading || !landingConfig) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-black text-white">
+        Loading Landing...
+      </div>
+    );
+  }
 
   return (
-    <div className="relative flex h-screen w-full flex-col justify-center items-center text-center bg-background">
-      {/* Particles */}
+    <div className="relative flex h-screen flex-col justify-center items-center text-center px-4 sm:px-8 overflow-hidden">
+      {/* Background Particles */}
       <Particles
-        className="absolute inset-0 z-0"
+        className="fixed inset-0 w-full h-full -z-10"
         quantity={200}
         ease={50}
         refresh
       />
 
-      {/* Heading */}
-      <div className="relative z-10 mb-2">
-        <h1 className="whitespace-pre-wrap text-6xl md:text-9xl font-bold text-white">
+      {/* Hero Text */}
+      <div className="z-10 mb-6">
+        <h1 className="whitespace-pre-wrap text-5xl sm:text-6xl md:text-8xl lg:text-8xl xl:text-9xl font-bold text-white">
           {landingConfig.firstName}{" "}
           <AuroraText>{landingConfig.lastName}</AuroraText>
         </h1>
-        <TypingAnimation>{landingConfig.title}</TypingAnimation>
+
+        <TypingAnimation className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-4 mb-6 text-gray-200">
+          {landingConfig.title}
+        </TypingAnimation>
       </div>
 
       {/* Resume Button */}
-      <ShimmerButton
-        onClick={() => window.open(landingConfig.resumeLink, "_blank")}
-      >
-        Download Resume
-      </ShimmerButton>
+      <div className="z-10 mb-4">
+        <ShimmerButton
+          onClick={() => window.open(landingConfig.resumeLink, "_blank")}
+        >
+          Download Resume
+        </ShimmerButton>
+      </div>
 
-      {/* Scroll UI */}
-      <div className="absolute bottom-8 z-50">
+      <div className="z-10 mt-8 flex gap-10 xl:hidden">
+        <SocialLinks />
+      </div>
+
+      <div className="hidden xl:flex flex-col gap-6 fixed top-1/2 right-8 -translate-y-1/2 z-50">
+        <SocialLinks />
+      </div>
+
+      <div className="absolute bottom-6 z-20">
         <Scrollui />
       </div>
 
+      {/* Background Ripple */}
       <Ripple />
-
-      {/* Social Links */}
-      <SocialLinks links={landingConfig.socialLinks} />
     </div>
   );
 };

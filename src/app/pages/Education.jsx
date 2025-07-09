@@ -15,9 +15,9 @@ const Education = () => {
       size={500}
       gradientSize={200}
       gradientFrom="red"
-      className="p-0 rounded-2xl border-2"
+      className="p-0 rounded-2xl xl:border-2 "
     >
-      <div className="text-white px-8 pt-6 pb-4 rounded-2xl max-w-4xl mx-auto">
+      <div className="text-white xl:px-8 px-5 pt-6 pb-4 rounded-2xl max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center mb-4">
           <div className="bg-yellow-400 p-2 rounded-md mr-4">
