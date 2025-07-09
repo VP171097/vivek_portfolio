@@ -21,7 +21,14 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex h-screen flex-col justify-center items-center text-center px-4 sm:px-8 overflow-hidden mt-[-40px] sm:mt-0">
+    <div
+      className="
+        relative flex h-screen flex-col justify-center items-center text-center
+        px-4 sm:px-8 overflow-hidden
+        -mt-8            /* shift up on very small screens  */
+        sm:mt-0          /* reset to normal from the sm breakpoint upward */
+      "
+    >
       {/* Background Particles */}
       <Particles
         className="fixed inset-0 w-full h-full -z-10"
