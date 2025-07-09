@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 z-50 w-full">
       {/* ===== Mobile / Tablet View ===== */}
-      <div className="xl:hidden bg-black/90 backdrop-blur-md px-4 py-2 shadow flex justify-between items-center">
+      <div className="xl:hidden bg-black/90 backdrop-blur-md px-4 py-5 shadow flex justify-between items-center">
         <div className="text-white font-bold text-lg">Menu</div>
         <button
           className="text-white focus:outline-none"
