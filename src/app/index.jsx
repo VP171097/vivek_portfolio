@@ -8,16 +8,16 @@ import Preloader from "@/components/ui/preloader";
 import ContactSection from "./pages/contact";
 import Footer from "@/components/layouts/footer";
 import { useConfig } from "@/context/ConfigContext";
+import Header from "@/components/layouts/header";
 
 const App = () => {
   const [showDelayFinished, setShowDelayFinished] = useState(false);
-  const { loading: configLoading } = useConfig(); // Loading from context
+  const { loading: configLoading } = useConfig();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowDelayFinished(true);
-    }, 2000); // Preloader minimum time
-
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -39,11 +39,16 @@ const App = () => {
         ease={50}
         refresh
       />
-
       <ScrollProgress className="top-0 z-20" />
+
+      {/* ✅ Header at top for small screens only */}
+      <div className="xl:hidden sticky top-0 z-50">
+        <Header />
+      </div>
+
       <LandingPage />
 
-      <section className="flex mt-8 flex-col md:flex-row xl:container w-full justify-center xl:gap-24  z-10 ">
+      <section className="flex mt-8 flex-col md:flex-row xl:container w-full justify-center xl:gap-24 z-10">
         <div>
           <Sidebar />
         </div>
@@ -52,10 +57,7 @@ const App = () => {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className=" flex justify-between   flex-col  mt-10 mb-5 "
-      >
+      <section id="contact" className="flex justify-between flex-col mb-5">
         <ContactSection />
       </section>
 

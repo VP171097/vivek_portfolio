@@ -36,16 +36,16 @@ const ContactSection = () => {
   };
 
   return (
-    <div className=" rounded-2xl container bg-black/50      ">
-      <div className="xl:flex xl:flex-row xl:px-8 justify-center gap-10 py-5 space-y-5 flex-col">
+    <div className="rounded-2xl container bg-black/50 py-10">
+      <div className="flex flex-col xl:flex-row justify-center items-center gap-10 w-full px-4 xl:px-8">
+        {/* Form Section */}
         <MagicCard
           gradientSize={400}
           gradientFrom="#4a16f4"
           gradientTo="#f42116"
-          className="rounded-2xl xl:p-8 p-4 md:p-12  w-full max-w-2xl  text-white "
+          className="rounded-2xl w-full max-w-2xl text-white p-6 md:p-10"
         >
-          {/* Heading */}
-          <div className="text-center mb-8 ">
+          <div className="text-center mb-8">
             <p className="text-xs tracking-widest text-orange-400 mb-1">
               GET IN TOUCH
             </p>
@@ -57,7 +57,6 @@ const ContactSection = () => {
             </p>
           </div>
 
-          {/* Form */}
           <form ref={form} onSubmit={sendEmail} className="space-y-6">
             {/* Name */}
             <div>
@@ -120,7 +119,7 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full flex justify-center items-center gap-2 cursor-pointer ${
+              className={`w-full flex justify-center items-center gap-2 ${
                 loading
                   ? "bg-gray-600 cursor-not-allowed"
                   : "bg-amber-500 hover:bg-amber-600"
@@ -160,7 +159,8 @@ const ContactSection = () => {
           </form>
         </MagicCard>
 
-        <div className="w-full max-w-md xl:p-2  md:p-10 rounded-2xl flex items-center justify-center">
+        {/* Image Section */}
+        <div className="w-full max-w-md flex items-center justify-center">
           <div className="rounded-xl overflow-hidden shadow-lg shadow-stone-600">
             <img
               src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*z76XqGEphiXy522fNjLlTQ.gif"

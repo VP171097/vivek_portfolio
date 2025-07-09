@@ -45,7 +45,7 @@ const About = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="xl:px-6 px-5 py-8 xl:rounded-2xl bg-black/50 rounded-2xl scroll-mt-20"
+      className="xl:px-6 px-5 py-8 xl:rounded-2xl bg-black/50  scroll-mt-20"
     >
       <div className="items-center gap-3 mb-3">
         <h2 className="text-white xl:text-2xl text-xl font-bold mb-3">
