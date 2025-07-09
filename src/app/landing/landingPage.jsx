@@ -23,7 +23,7 @@ const LandingPage = () => {
   return (
     <div
       className="
-        relative flex h-screen flex-col justify-center items-center text-center px-3 sm:px-8 overflow-hidden -mt-15 sm:mt-0         
+        relative flex h-screen flex-col justify-center items-center text-center px-3 sm:px-8 overflow-hidden -mt-20 sm:mt-0         
       "
     >
       {/* Background Particles */}
