@@ -21,7 +21,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex h-screen flex-col justify-center items-center text-center px-4 sm:px-8 overflow-hidden">
+    <div className="relative flex h-screen flex-col justify-center items-center text-center px-4 sm:px-8 overflow-hidden mt-[-40px] sm:mt-0">
       {/* Background Particles */}
       <Particles
         className="fixed inset-0 w-full h-full -z-10"
@@ -37,13 +37,13 @@ const LandingPage = () => {
           <AuroraText>{landingConfig.lastName}</AuroraText>
         </h1>
 
-        <TypingAnimation className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-4 mb-6 text-gray-200">
+        <TypingAnimation className="text-md sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-2 sm:mt-4 mb-4 sm:mb-6 text-gray-200">
           {landingConfig.title}
         </TypingAnimation>
       </div>
 
       {/* Resume Button */}
-      <div className="z-10 mb-4">
+      <div className="z-10 mb-3 sm:mb-4">
         <ShimmerButton
           onClick={() => window.open(landingConfig.resumeLink, "_blank")}
         >
@@ -51,19 +51,22 @@ const LandingPage = () => {
         </ShimmerButton>
       </div>
 
-      <div className="z-10 mt-8 flex gap-10 xl:hidden">
+      {/* Social Icons (Mobile) */}
+      <div className="z-10 mt-6 flex gap-10 xl:hidden">
         <SocialLinks />
       </div>
 
+      {/* Social Icons (Desktop) */}
       <div className="hidden xl:flex flex-col gap-6 fixed top-1/2 right-8 -translate-y-1/2 z-50">
         <SocialLinks />
       </div>
 
+      {/* Scroll UI */}
       <div className="absolute bottom-6 z-20">
         <Scrollui />
       </div>
 
-      {/* Background Ripple */}
+      {/* Ripple Background */}
       <Ripple />
     </div>
   );

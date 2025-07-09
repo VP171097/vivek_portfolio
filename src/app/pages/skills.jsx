@@ -43,7 +43,7 @@ const SkillsSection = () => {
           <p className="text-lg tracking-widest text-orange-400 mb-1">
             {skillsConfig.sectionTitle}
           </p>
-          <h2 className="xl:text-3xl md:text-4xl font-bold mb-5">
+          <h2 className=" font-bold mb-5">
             <SparklesText>{skillsConfig.headline}</SparklesText>
           </h2>
 

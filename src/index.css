@@ -229,3 +229,9 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.active {
+  background-color: #1f1f1f;
+  color: #facc15; /* yellow-400 */
+  font-weight: 600;
+}

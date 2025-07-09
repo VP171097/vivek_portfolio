@@ -28,7 +28,7 @@ const Sidebar = () => {
     return <div className="text-white p-4">Loading Sidebar...</div>;
 
   return (
-    <aside className="relative container md:w-72 bg-black/50 text-white py-6 px-4 rounded-2xl shadow-lg flex flex-col justify-between lg:sticky lg:top-[90px]  h-min mb-10">
+    <aside className="relative container md:w-72 bg-black/50 text-white py-6 px-4 rounded-2xl shadow-lg flex flex-col justify-between lg:sticky lg:top-[90px] h-min mb-10 mt-10">
       <BorderBeam
         size={500}
         borderWidth={2}
@@ -40,7 +40,7 @@ const Sidebar = () => {
       <div className="md:hidden">
         {/* Collapsed Card */}
         <div className="bg-[#1c1c1c] rounded-2xl p-5 flex items-center justify-between">
-          <div className="flex items-center gap-4 ">
+          <div className="flex items-center gap-4">
             <img
               src={sidebarConfig.avatar}
               alt="Avatar"
@@ -64,8 +64,12 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* Expandable Section */}
-        {expanded && (
+        {/* Expandable Section with Transition */}
+        <div
+          className={`transition-all duration-500 ease-in-out overflow-hidden ${
+            expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
           <div className="mt-4 space-y-4 px-4 pb-5">
             {sidebarConfig.contacts.map((contact, idx) => {
               const Icon = iconMap[contact.type];
@@ -80,11 +84,11 @@ const Sidebar = () => {
               );
             })}
           </div>
-        )}
+        </div>
       </div>
 
       {/* -------- Large Screens View -------- */}
-      <div className="hidden md:flex flex-col items-center py-6  px-3 ">
+      <div className="hidden md:flex flex-col items-center py-6 px-3">
         <img
           className="w-32 h-32 rounded-2xl bg-gray-800/40"
           src={sidebarConfig.avatar}

@@ -54,7 +54,7 @@ const App = () => {
 
       <section
         id="contact"
-        className=" flex justify-between   flex-col  mt-4  "
+        className=" flex justify-between   flex-col  mt-10 mb-5 "
       >
         <ContactSection />
       </section>

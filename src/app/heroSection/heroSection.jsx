@@ -7,10 +7,10 @@ import SkillsSection from "../pages/skills";
 
 const HeroSection = () => {
   return (
-    <div className="rounded-2xl  xl:border-2 xl:border-amber-100 max-w-4xl  relative flex justify-between h-full w-full flex-col pb-8  ">
+    <div className="rounded-2xl xl:border-2 xl:border-amber-100 max-w-4xl  relative flex justify-between h-full w-full flex-col pb-8  ">
       <Header />
 
-      <div id="about" className="xl:px-5 my-4 scroll-mt-20">
+      <div id="about" className="xl:px-5 mb-4 scroll-mt-20">
         <About />
       </div>
       <div id="experience" className=" xl:px-10 my-4 scroll-mt-20">

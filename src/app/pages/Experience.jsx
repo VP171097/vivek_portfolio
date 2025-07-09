@@ -7,9 +7,6 @@ const Experience = () => {
   const { config, loading } = useConfig();
   const experienceConfig = config.experience;
 
-  if (loading || !experienceConfig)
-    return <div className="text-white text-center">Loading Experience...</div>;
-
   const [expandedItems, setExpandedItems] = useState({});
 
   const toggleExpand = (index) => {
@@ -18,6 +15,9 @@ const Experience = () => {
       [index]: !prev[index],
     }));
   };
+
+  if (loading || !experienceConfig)
+    return <div className="text-white text-center">Loading Experience...</div>;
 
   return (
     <div className="text-white">
@@ -39,13 +39,11 @@ const Experience = () => {
         <div className="relative ml-5 border-l-2 border-gray-600 pt-0.5">
           {experienceConfig.experienceData.map((item, index) => (
             <div key={index} className="mb-10 pl-8 relative">
-              {/* Yellow Dot */}
               <div className="mt-10 py-3">
                 <span className="absolute left-[-9px] top-1 w-4 h-4 bg-yellow-400 rounded-full"></span>
 
-                {/* Title */}
+                {/* Title and Info */}
                 <h3 className="xl:text-lg text-xl font-bold">{item.title}</h3>
-
                 <div className="flex gap-4 mt-3 items-center">
                   <img
                     src={item.img}
@@ -60,25 +58,35 @@ const Experience = () => {
                   </div>
                 </div>
 
-                {/* Bullet Points */}
+                {/* Points */}
                 <ul className="list-disc list-inside space-y-2 xl:text-sm text-gray-200 mt-2">
+                  {/* Desktop: Always show */}
                   <div className="hidden lg:block">
                     {item.points.map((point, i) => (
                       <li key={i}>{point}</li>
                     ))}
                   </div>
 
-                  <div className="lg:hidden">
-                    {expandedItems[index] &&
-                      item.points.map((point, i) => <li key={i}>{point}</li>)}
+                  {/* Mobile: Smooth open/close */}
+                  <div
+                    className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden`}
+                    style={{
+                      maxHeight: expandedItems[index] ? "1000px" : "0px",
+                      opacity: expandedItems[index] ? 1 : 0,
+                      paddingTop: expandedItems[index] ? "0.5rem" : "0",
+                    }}
+                  >
+                    {item.points.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
                   </div>
                 </ul>
 
-                {/* Toggle Button (visible only on mobile) */}
+                {/* Toggle (mobile) */}
                 <div className="lg:hidden mt-2">
                   <button
                     onClick={() => toggleExpand(index)}
-                    className="text-blue-400 text-sm hover:text-amber-400 cursor-pointer  focus:outline-none"
+                    className="text-blue-400 text-sm hover:text-amber-400 cursor-pointer focus:outline-none"
                   >
                     {expandedItems[index] ? "Show Less" : "See More..."}
                   </button>
